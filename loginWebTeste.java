@@ -21,7 +21,7 @@ public class LoginWebTeste{
         driver.get("https://www.teste.com.br/");
     }
 
-   @Test
+    @Test
     public void fazLogin(){
         System.out.println("Executando o teste...");
 
@@ -39,3 +39,12 @@ public class LoginWebTeste{
         String urlAtual = driver.getCurrentUrl();
         Assertion.assertTrue(urlAtual.contains("/dashboard"), "A URL deveria conter '/dashboard'");
     }
+    
+
+    @AfterEach
+    public void tearDown(){
+        if (driver != null){
+            driver.quit();
+        }
+    }
+}
