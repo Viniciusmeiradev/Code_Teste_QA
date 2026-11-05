@@ -21,6 +21,21 @@ public class LoginWebTeste{
         driver.get("https://www.teste.com.br/");
     }
 
-    @Test
+   @Test
     public void fazLogin(){
         System.out.println("Executando o teste...");
+
+        WebElement Usuario = driver.findElement(By.id("login"));
+        Usuario.sendKeys("usuario@gmail.com");
+
+        WebElement senha = driver.findElement(By.id("senha"));
+        senha.sendKeys("senha123");
+
+        WebElement botaoEntrar = driver.findElement(By.cssSelector("button[type='submit']"));
+        botaoEntrar.click();
+
+        WebDriverWait verificaPagina = new WebDriverWait(driver, Duration.ofSeconds(10));
+        verificaPagina.until(ExpectedConditions.urlContains("/dashboard"));
+        String urlAtual = driver.getCurrentUrl();
+        Assertion.assertTrue(urlAtual.contains("/dashboard"), "A URL deveria conter '/dashboard'");
+    }
