@@ -30,4 +30,15 @@ public class SetupTeardownIncluder{
         }
         return pageData.getHtml();
     }
+
+    private boolean isTestPage() throws Exception{
+        return pageData.hasAttribute("Test");
+    }
+
+    private void includeSetupAndTeardownPages() throws Exception{
+        includeSetupPages();
+        includePageContent();
+        includeTeardownPages();
+        updatePageContent();
+    }
 }
