@@ -42,6 +42,9 @@ public class SetupTeardownIncluder{
         updatePageContent();
     }
 
+
+
+
     private void includeSetupPages() throws Exception{
         if (isSuite){
             includeSuiteSetupPage();
@@ -52,4 +55,26 @@ public class SetupTeardownIncluder{
     private void includeSuiteSetupPage() throws Exception{
         include(SuiteResponder.SUITE_SETUP_NAME, "-setup");
     }
+
+    private void includeSetupPage()throws Exception{
+        include("Setup", "-setup");
+    }
+
+
+
+
+    private void includePageContent()throws Exception{
+        newPageContent.append(pageData.getContent());
+    }
+
+
+
+
+    private void includeTeardownPages() throws Exception {
+        includeTeardownPage();
+        if (isSuite){
+            includeSuiteTeardownPage();
+        }
+    }
+
 }
