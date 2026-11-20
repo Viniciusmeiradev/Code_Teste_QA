@@ -76,17 +76,25 @@ public class SetupTeardownIncluder{
             includeSuiteTeardownPage();
         }
     }
+
     private void includeTeardownPage()throws Exception{
         include("TearDown", "-teardown");
     }
+
     private void includeSuiteTeardownPage(){
         include(SuiteResponder.SUITE_TEARDOWN_NAME, "-teardown");
     }
 
 
+
+
+
     private void updatePageContent()throws Exception{
         pageData.setContent(newPageContent.toString());
     }
+
+    
+
 
     private void include(String pageName, String arg)throws Exception{
         WikiPage inheritedPage = findInheritedPage(pageName);
@@ -96,6 +104,17 @@ public class SetupTeardownIncluder{
         }
     }
 
-    
+    private WikiPage findinheritedPage(String pageName) throws Exception{
+        return pageCrawlerImp.getInheritedPage(pageName, testPage);
+    }
+
+    private String getPathNameForPage(WikiPage page)throws Exception{
+        WikiPagePath pagePath = pageCrawler.getFullPath(page);
+        return PathParser.render(pagePath);
+    }
+
+    private void buildIncludeDirective(String pagePathName, String arg){
+        newPageContent.append("\n! include");
+    }
 
 }
