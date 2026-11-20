@@ -41,4 +41,15 @@ public class SetupTeardownIncluder{
         includeTeardownPages();
         updatePageContent();
     }
+
+    private void includeSetupPages() throws Exception{
+        if (isSuite){
+            includeSuiteSetupPage();
+        }
+        includeSetupPage();
+    }
+
+    private void includeSuiteSetupPage() throws Exception{
+        include(SuiteResponder.SUITE_SETUP_NAME, "-setup");
+    }
 }
